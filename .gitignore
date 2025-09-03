@@ -1,0 +1,33 @@
+# --- Python 一般 ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.venv/
+venv/
+.env
+.env.*        # .env.local など
+
+# --- ログ・一時ファイル ---
+logs/
+*.log
+*.tmp
+
+# --- OS / Editor ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# --- データ（S3にあるのでGitに入れない） ---
+data/
+*.csv
+*.tsv
+*.jsonl
+# もしサンプルが必要なら samples/ を作って最小データだけ入れる
+
+# --- 出力物 ---
+outputs/
+
+

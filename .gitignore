@@ -30,4 +30,14 @@ data/
 # --- 出力物 ---
 outputs/
 
+# 個別ファイルを無視
+test.py
+scrape_test.py
+
+# ディレクトリを無視
+old/
+
+# .gitignore 自体を無視したい場合
+.gitignore
+
 

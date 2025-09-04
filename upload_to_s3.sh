@@ -1,31 +1,36 @@
 #!/bin/bash
 
-# ログ出力用
-LOGFILE="/home/ec2-user/batch/logs/upload_s3_$(date '+%Y%m%d_%H%M%S').log"
+# .env を読み込み
+set -a
+source /home/ec2-user/batch/.env
+set +a
 
-# S3 アップロード処理開始
+# ログ出力用
+LOGFILE="${LOG_DIR}/upload_s3_$(date '+%Y%m%d_%H%M%S').log"
+
 echo "=== S3 アップロード開始 $(date) ===" > "$LOGFILE"
 
 # バッター成績
-/usr/local/bin/aws s3 cp /home/ec2-user/batch/data/batter/ \
-  s3://hirota-work/databricks/batting/2025/ --recursive >> "$LOGFILE" 2>&1
+/usr/local/bin/aws s3 cp "${LOCAL_DATA_DIR}/batter/" \
+  "s3://${S3_BUCKET}/${S3_PREFIX}/batting/${S3_YEAR}/" --recursive >> "$LOGFILE" 2>&1
 
 # ピッチャー成績
-/usr/local/bin/aws s3 cp /home/ec2-user/batch/data/pitcher/ \
-  s3://hirota-work/databricks/pitcher/2025/ --recursive >> "$LOGFILE" 2>&1
+/usr/local/bin/aws s3 cp "${LOCAL_DATA_DIR}/pitcher/" \
+  "s3://${S3_BUCKET}/${S3_PREFIX}/pitcher/${S3_YEAR}/" --recursive >> "$LOGFILE" 2>&1
 
 # 試合日程
-/usr/local/bin/aws s3 cp /home/ec2-user/batch/data/matches/ \
-  s3://hirota-work/databricks/games/ --recursive >> "$LOGFILE" 2>&1
+/usr/local/bin/aws s3 cp "${LOCAL_DATA_DIR}/matches/" \
+  "s3://${S3_BUCKET}/${S3_PREFIX}/games/" --recursive >> "$LOGFILE" 2>&1
 
 # チーム打撃成績
-/usr/local/bin/aws s3 cp /home/ec2-user/batch/data/team_batting/ \
-  s3://hirota-work/databricks/team_batting/ --recursive >> "$LOGFILE" 2>&1
+/usr/local/bin/aws s3 cp "${LOCAL_DATA_DIR}/team_batting/" \
+  "s3://${S3_BUCKET}/${S3_PREFIX}/team_batting/" --recursive >> "$LOGFILE" 2>&1
 
 # チーム投手成績
-/usr/local/bin/aws s3 cp /home/ec2-user/batch/data/team_pitcher/ \
-  s3://hirota-work/databricks/team_pitcher/ --recursive >> "$LOGFILE" 2>&1
+/usr/local/bin/aws s3 cp "${LOCAL_DATA_DIR}/team_pitcher/" \
+  "s3://${S3_BUCKET}/${S3_PREFIX}/team_pitcher/" --recursive >> "$LOGFILE" 2>&1
 
 # チーム守備成績
-/usr/local/bin/aws s3 cp /home/ec2-user/batch/data/team_defense/ \
-  s3://hirota-work/databricks/team_defense/ --recursive >> "$LOGFILE" 2>&1
+/usr/local/bin/aws s3 cp "${LOCAL_DATA_DIR}/team_defense/" \
+  "s3://${S3_BUCKET}/${S3_PREFIX}/team_defense/" --recursive >> "$LOGFILE" 2>&1
+

@@ -37,7 +37,3 @@ scrape_test.py
 # ディレクトリを無視
 old/
 
-# .gitignore 自体を無視したい場合
-.gitignore
-
-

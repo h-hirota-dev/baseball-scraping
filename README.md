@@ -5,6 +5,7 @@ EC2 上で動作し、cron により自動実行します。
 
 ## 📁 ディレクトリ構成
 
+```bash
 /home/ec2-user/batch
 ├── README.md # 本ドキュメント
 ├── data/ # 取得CSVの格納先（※Git管理外推奨）
@@ -26,6 +27,8 @@ EC2 上で動作し、cron により自動実行します。
 ├── scrape_pitchers_vs_team_all.py # 個人投手 vsチーム 成績取得
 ├── scrape_hitters_vs_stadium_all.py # 個人打者 球場別 成績取得
 └── scrape_pitchers_vs_stadium_all.py # 個人投手 球場別 成績取得
+
+```
 
 ## 🔧 前提・セットアップ
 
